@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Farmer Dashboard - CropCare AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<div class="nav-container">
+<div class="logo">🌱 CropCare AI <span class="badge">Farmer</span></div>
+<button onclick="logout()">Logout</button>
+</div>
+</nav>
+
+<section class="hero">
+<h1>Smart Crop Health Monitoring</h1>
+<p id="welcomeText"></p>
+</section>
+
+<div class="container">
+<div class="card">
+
+<h2>Analyze Crop Leaf</h2>
+
+<input type="file">
+<br><br>
+<button class="analyze-btn" onclick="showResult()">Analyze Image</button>
+
+<div id="loading" style="display:none;">
+<div class="spinner"></div>
+<p>AI Processing...</p>
+</div>
+
+<div id="result" class="result" style="display:none;">
+<p><strong>Disease:</strong> Maize Leaf Blight</p>
+<p><strong>Confidence:</strong> 92%</p>
+<p><strong>Recommendation:</strong> Apply fungicide and remove infected leaves.</p>
+</div>
+
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+const user = localStorage.getItem("user");
+const role = localStorage.getItem("role");
+
+if (!user || role !== "index.html") {
+window.location.href = "login.html";
+} else {
+document.getElementById("welcomeText").innerHTML =
+"Welcome, <strong>" + user + "</strong>. Upload an image for analysis.";
+}
+});
+
+function showResult() {
+document.getElementById("loading").style.display = "block";
+document.getElementById("result").style.display = "none";
+
+setTimeout(function(){
+document.getElementById("loading").style.display = "none";
+document.getElementById("result").style.display = "block";
+},2000);
+}
+
+function logout(){
+localStorage.clear();
+window.location.href="login.html";
+}
+</script>
+
+</body>
+</html>

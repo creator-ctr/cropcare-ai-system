@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login - CropCare AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-page">
+
+<div class="login-container">
+    <div class="login-card">
+        <h2>🌱 CropCare AI</h2>
+        <p>Smart Crop Disease Detection System</p>
+
+        <input type="text" id="username" placeholder="Enter your name">
+
+        <select id="roleSelect">
+            <option value="">-- Select Role --</option>
+            <option value="index.html">Farmer</option>
+            <option value="admin.html">Admin</option>
+            <option value="consultant.html">AI Consultant</option>
+        </select>
+
+        <button onclick="login()">Login</button>
+    </div>
+</div>
+
+<script>
+function login() {
+    const username = document.getElementById("username").value.trim();
+    const rolePage = document.getElementById("roleSelect").value;
+
+    if (username === "" || rolePage === "") {
+        alert("Please enter name and select role.");
+        return;
+    }
+
+    localStorage.setItem("user", username);
+    localStorage.setItem("role", rolePage);
+
+    window.location.href = rolePage;
+}
+</script>
+
+</body>
+</html>

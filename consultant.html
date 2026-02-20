@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Consultant Dashboard - CropCare AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<div class="nav-container">
+<div class="logo">🌱 CropCare AI <span class="badge">Consultant</span></div>
+<button onclick="logout()">Logout</button>
+</div>
+</nav>
+
+<section class="hero">
+<h1>AI Consultant Panel</h1>
+<p id="welcomeText"></p>
+</section>
+
+<div class="container">
+<div class="card">
+<h2>Recent Cases</h2>
+<p>Case #204 - Maize Leaf Blight</p>
+<p>Case #198 - Tomato Early Blight</p>
+<p>Case #176 - Cassava Mosaic Virus</p>
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+const user = localStorage.getItem("user");
+const role = localStorage.getItem("role");
+
+if (!user || role !== "consultant.html") {
+window.location.href="login.html";
+} else {
+document.getElementById("welcomeText").innerHTML =
+"Welcome, Consultant <strong>"+user+"</strong>.";
+}
+});
+
+function logout(){
+localStorage.clear();
+window.location.href="login.html";
+}
+</script>
+
+</body>
+</html>

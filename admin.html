@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard - CropCare AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<div class="nav-container">
+<div class="logo">🌱 CropCare AI <span class="badge">Admin</span></div>
+<button onclick="logout()">Logout</button>
+</div>
+</nav>
+
+<section class="hero">
+<h1>System Administration</h1>
+<p id="welcomeText"></p>
+</section>
+
+<div class="container">
+<div class="card">
+<h2>System Analytics</h2>
+
+<p>Total Farmers: <span id="farmers">0</span></p>
+<p>Total Analyses: <span id="analyses">0</span></p>
+<p>System Accuracy: <span id="accuracy">0</span>%</p>
+
+</div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+const user = localStorage.getItem("user");
+const role = localStorage.getItem("role");
+
+if (!user || role !== "admin.html") {
+window.location.href="login.html";
+} else {
+document.getElementById("welcomeText").innerHTML =
+"Welcome, Admin <strong>"+user+"</strong>.";
+}
+
+animate("farmers",128);
+animate("analyses",542);
+animate("accuracy",94);
+});
+
+function animate(id,end){
+let start=0;
+let obj=document.getElementById(id);
+let timer=setInterval(function(){
+start++;
+obj.innerText=start;
+if(start>=end){clearInterval(timer);}
+},20);
+}
+
+function logout(){
+localStorage.clear();
+window.location.href="login.html";
+}
+</script>
+
+</body>
+</html>
